@@ -25,6 +25,7 @@ const newGameButton = document.querySelector('a.btn');
 newGameButton.addEventListener('click', function handler(){
     //dichiaro l'array bomba
     let bomb =[];
+    let over = false;
     //do la lunghezza all'array vuoto e ci pusho i numeri da 1 a 100 in modo random al suo interno
     while(bomb.length < 16){
         let bombRandom = getRandomNumber(1 , 100);
@@ -35,7 +36,27 @@ newGameButton.addEventListener('click', function handler(){
     }
     console.log(bomb);
 
-   // § 1 - recupero il parent
+    for (let  i = 1 ; i <= 100 ; i++){
+        const newSquare = getMeANewSquare(i);
+
+        newSquare.addEventListener('click', function(){
+            newSquare.classList.toggle('clicked');
+            console.log(i);
+
+            let scorePlayer = 0;
+
+            if(!over){
+                over = true;
+                newSquare.classList.toggle("bomb")
+                console.log('hai perso');
+            }else{
+                newSquare.classList.toggle("clicked")
+                console.log(i);
+            }
+        })
+    }
+
+   //§ 1 - recupero il parent
     const gridContainer = document.querySelector('div.grid');
    // console.log(gridContainer);
 
